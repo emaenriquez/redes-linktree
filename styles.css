@@ -1,0 +1,360 @@
+/* ==========================================================================
+   Ema Enríquez - Neobrutalism Linktree (Bento Box Grid)
+   Pure HTML + CSS Implementation
+   ========================================================================== */
+
+:root {
+  --bg-yellow: #FFCF00;
+  --card-bg: #FFD633;
+  --border-color: #000000;
+  --border-width: 2.5px;
+  --border-radius: 18px;
+  --shadow-offset: 4px 4px 0px #000000;
+  --shadow-hover: 6px 6px 0px #000000;
+  --shadow-active: 1px 1px 0px #000000;
+  
+  /* Tile Theme Colors */
+  --tile-portfolio: #E08C84;  /* Pastel Terracotta / Coral */
+  --tile-github: #A78BFA;     /* Vibrant Violet */
+  --tile-linkedin: #526760;   /* Muted Sage / Dark Slate */
+  --tile-instagram: #F4A261;  /* Soft Warm Coral */
+  --tile-x: #90E0EF;          /* Soft Aqua / Mint */
+  --tile-white: #FFFFFF;
+  
+  /* Typography */
+  --font-main: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-heading: 'Space Grotesk', sans-serif;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-main);
+  background-color: var(--bg-yellow);
+  color: #000000;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 24px 16px;
+  line-height: 1.4;
+  -webkit-font-smoothing: antialiased;
+}
+
+.page-container {
+  width: 100%;
+  max-width: 440px;
+  margin: 0 auto;
+}
+
+.card-frame {
+  background-color: var(--bg-yellow);
+  border: var(--border-width) solid var(--border-color);
+  border-radius: 28px;
+  padding: 24px;
+  box-shadow: 7px 7px 0px #000000;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  position: relative;
+}
+
+.frame-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 4px;
+}
+
+.status-dot {
+  width: 10px;
+  height: 10px;
+  background-color: #10B981;
+  border: 1.5px solid #000;
+  border-radius: 50%;
+  box-shadow: 1px 1px 0px #000;
+}
+
+.brand-tag {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: 0.75rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  background: #000;
+  color: #fff;
+  padding: 3px 10px;
+  border-radius: 20px;
+}
+
+.sparkle-icon {
+  color: #000;
+  display: flex;
+  align-items: center;
+}
+
+.profile-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 10px;
+  margin-top: 4px;
+}
+
+.avatar-wrapper {
+  position: relative;
+  margin-bottom: 4px;
+}
+
+.avatar-img-container {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  border: 3px solid #000;
+  background-color: #FFF;
+  overflow: hidden;
+  box-shadow: 4px 4px 0px #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.avatar-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.avatar-badge {
+  position: absolute;
+  bottom: -2px;
+  right: -2px;
+  background-color: #FFF;
+  border: 2px solid #000;
+  border-radius: 50%;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  box-shadow: 2px 2px 0px #000;
+}
+
+.profile-name {
+  font-family: var(--font-heading);
+  font-size: 1.6rem;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  color: #000;
+}
+
+.handle-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background-color: #FFFFFF;
+  border: 2px solid #000;
+  border-radius: 30px;
+  padding: 5px 14px;
+  font-family: var(--font-heading);
+  font-size: 0.85rem;
+  font-weight: 700;
+  box-shadow: 3px 3px 0px #000;
+}
+
+.verified-icon {
+  width: 16px;
+  height: 16px;
+}
+
+.profile-bio {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #1A1A1A;
+  max-width: 280px;
+  margin-top: 2px;
+}
+
+/* --- Bento Box Grid Layout --- */
+.bento-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+}
+
+.bento-tile {
+  text-decoration: none;
+  color: #000000;
+  border: var(--border-width) solid var(--border-color);
+  border-radius: var(--border-radius);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: var(--shadow-offset);
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.bento-tile:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: var(--shadow-hover);
+}
+
+.bento-tile:active {
+  transform: translate(3px, 3px);
+  box-shadow: var(--shadow-active);
+}
+
+.tile-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.star-sparkle {
+  color: #000;
+  opacity: 0.85;
+}
+
+.social-icon {
+  display: flex;
+  align-items: center;
+}
+
+.tile-title {
+  font-family: var(--font-heading);
+  font-size: 1.15rem;
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+.tile-subtext {
+  font-size: 0.78rem;
+  font-weight: 700;
+  opacity: 0.85;
+  margin-top: 4px;
+}
+
+.tile-url {
+  font-size: 0.82rem;
+  font-weight: 700;
+  opacity: 0.9;
+  margin-top: 2px;
+}
+
+.tile-tag {
+  background-color: #000;
+  color: #FFF;
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  padding: 2px 8px;
+  border-radius: 12px;
+  letter-spacing: 0.5px;
+}
+
+.tile-portfolio {
+  grid-column: span 2;
+  background-color: var(--tile-portfolio);
+  min-height: 110px;
+}
+
+.tile-portfolio .tile-body {
+  margin-top: 8px;
+}
+
+.tile-arrow {
+  position: absolute;
+  bottom: 14px;
+  right: 14px;
+  background: #000;
+  color: #fff;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease;
+}
+
+.tile-portfolio:hover .tile-arrow {
+  transform: translate(2px, -2px);
+}
+
+.tile-github {
+  grid-column: span 1;
+  background-color: var(--tile-github);
+  min-height: 120px;
+}
+
+.tile-linkedin {
+  grid-column: span 1;
+  background-color: var(--tile-linkedin);
+  color: #FFFFFF;
+  min-height: 120px;
+}
+
+.tile-linkedin .star-sparkle,
+.tile-linkedin .social-icon {
+  color: #FFFFFF;
+}
+
+.tile-linkedin .tile-subtext {
+  color: #E2E8F0;
+}
+
+.tile-instagram {
+  grid-column: span 1;
+  background-color: var(--tile-instagram);
+  min-height: 120px;
+}
+
+.tile-x {
+  grid-column: span 1;
+  background-color: var(--tile-x);
+  min-height: 120px;
+}
+
+.frame-footer {
+  text-align: center;
+  padding-top: 6px;
+}
+
+.footer-text {
+  font-family: var(--font-heading);
+  font-size: 0.78rem;
+  font-weight: 800;
+  color: #000000;
+  letter-spacing: 0.5px;
+}
+
+@media (max-width: 400px) {
+  .card-frame {
+    padding: 18px;
+    border-radius: 22px;
+  }
+  
+  .profile-name {
+    font-size: 1.4rem;
+  }
+  
+  .bento-grid {
+    gap: 10px;
+  }
+  
+  .bento-tile {
+    padding: 14px;
+  }
+}
